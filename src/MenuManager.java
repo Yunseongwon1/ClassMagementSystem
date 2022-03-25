@@ -1,6 +1,31 @@
 import java.util.Scanner;
 
 public class MenuManager {
+	
+	public static void addClass() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Class Name:");
+		String className = input.next();
+		System.out.print("Professor Name:");
+		String professorName = input.next();
+		System.out.print("Classroom:");
+		String classroom = input.next();
+	}
+	public static void deleteClass() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Class Name:");
+		String className = input.next();
+	}
+	public static void editClass() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Class Name:");
+		String className = input.next();
+	}
+	public static void viewClass() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Class Name:");
+		String className = input.next();
+	}
 
 	public static void main(String[] args) {
 		int num = 0;
@@ -18,24 +43,16 @@ public class MenuManager {
 			num = input.nextInt();
 			
 			if (num == 1) {
-				System.out.print("Class Name:");
-				String className = input.next();
-				System.out.print("Professor Name:");
-				String professorName = input.next();
-				System.out.print("Classroom:");
-				String classroom = input.next();
+				addClass();
 			}
 			else if (num == 2) {
-				System.out.print("Class Name:");
-				String className = input.next();
+				deleteClass();
 			}
 			else if (num == 3) {
-				System.out.print("Class Name:");
-				String className = input.next();
+				editClass();
 			}
 			else if (num == 4) {
-				System.out.print("Class Name:");
-				String className = input.next();
+				viewClass();
 			}
 		}
 	}
