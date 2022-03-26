@@ -32,7 +32,7 @@ public class MenuManager {
 		Scanner input = new Scanner(System.in);
 		
 		while (num != 6) {
-			System.out.println("*** Class Management Sysytem Menu ***");
+			System.out.println("*** Class Management System Menu ***");
 			System.out.println("1. Add the Class");
 			System.out.println("2. Delete the Class");
 			System.out.println("3. Edit the Class");
