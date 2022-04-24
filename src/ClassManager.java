@@ -1,47 +1,108 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import classes.Class;
+import classes.ProgrammingClass;
+
 public class ClassManager {
-	Class class1;
-	
+	ArrayList<Class> classes = new ArrayList<Class>();
 	Scanner input;
 	ClassManager(Scanner input){
 		this.input = input;
 	}
 	
 	public void addClass() {
-		class1 = new Class();
-		System.out.print("Class Name:");
-		class1.ClassName = input.next();
-		System.out.print("Professor Name:");
-		class1.ProfessorName = input.next();
-		System.out.print("Classroom:");
-		class1.Classroom = input.next();
+		int kind = 0;
+		Class class1 = new Class();
+		while (kind != 1 && kind != 2 ) {
+			System.out.print("1 for Dynamic: ");
+			System.out.print("2 for Programming: ");
+			System.out.print("Select num for Class Kind between 1 and 2: ");
+			kind = input.nextInt();
+			if (kind == 1) {
+				class1 = new Class();
+				class1.getUserInput(input);
+				classes.add(class1);
+				break;
+			}
+			else if (kind == 2) {
+				class1 = new ProgrammingClass();
+				class1.getUserInput(input);
+				classes.add(class1);
+				break;
+			}
+			else {
+				System.out.print("Select num for Class Kind between 1 and 2: ");
+			}
+		}
+		
 	}
 	
 	public void deleteClass() {
 		System.out.print("Class Name:");
 		String ClassName = input.next();
-		if (class1 == null) {
+		int index = -1;
+		for (int i = 0; i<classes.size(); i++) {
+			if (classes.get(i).getClassName().equals(ClassName)) {
+				index = i;
+				break;
+			}
+		}
+		
+		if (index >= 0) {
+			classes.remove(index);
+			System.out.println("the class " + ClassName + " is deleted");
+		}
+		else {
 			System.out.println("the class has not been registered");
 			return;
 		}
-		if (class1.ClassName.equals(ClassName)) {
-			class1 = null;
-			System.out.println("the class is deleted");
-		}
+		
 	}
 	public void editClass() {
 		System.out.print("Class Name:");
 		String ClassName = input.next();
-		if (class1.ClassName.equals(ClassName)) {
-			System.out.println("the class to be edited is " + ClassName);
-		}
+		for (int i = 0; i<classes.size(); i++) {
+			Class class1 = classes.get(i);
+			if (class1.getClassName().equals(ClassName)) {
+				int num = -1;
+				while (num != 5) {
+					System.out.println("** Class Info Edit Menu **");
+					System.out.println(" 1. Edit ClassName");
+					System.out.println(" 2. Edit ProfessorName");
+					System.out.println(" 3. View Classroom");
+					System.out.println(" 5. Exit");
+					System.out.print("Select one number between 1 - 6: ");
+					num = input.nextInt();
+					if (num == 1) {
+						System.out.print("Class Name: ");
+						String classname = input.next();
+						class1.setClassName(classname);
+					}
+					else if (num == 2) {
+						System.out.print("Professor Name: ");
+						String professorname = input.next();
+						class1.setProfessorName(professorname);
+					}
+					else if (num == 3) {
+						System.out.print("Classroom: ");
+						String classroom = input.next();
+						class1.setClassroom(classroom);
+					}
+					else {
+						continue;
+					} // else
+				} // while
+				break;
+		} // if
+		} // for
 	}
-	public void viewClass() {
-		System.out.print("Class Name:");
-		String ClassName = input.next();
-		if (class1.ClassName.equals(ClassName)) {
-			class1.printInfo();
+	public void viewClasses() {
+//		System.out.print("Class Name:");
+//		String ClassName = input.next();
+		System.out.println("# of registered classes: " + classes.size());
+		for (int i = 0; i<classes.size(); i++) {
+			classes.get(i).printInfo();
 		}
 	}
 }

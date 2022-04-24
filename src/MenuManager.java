@@ -12,7 +12,7 @@ public class MenuManager {
 			System.out.println("1. Add the Class");
 			System.out.println("2. Delete the Class");
 			System.out.println("3. Edit the Class");
-			System.out.println("4. View the Class");
+			System.out.println("4. View the Classes");
 			System.out.println("5. Exit");
 			System.out.print("Select one number between 1 - 6 :");
 			num = input.nextInt();
@@ -27,7 +27,7 @@ public class MenuManager {
 				classmanager.editClass();
 			}
 			else if (num == 4) {
-				classmanager.viewClass();
+				classmanager.viewClasses();
 			}
 		}
 	}
