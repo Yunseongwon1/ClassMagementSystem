@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Class;
+import classes.ClassKind;
+import classes.ElectiveClass;
 import classes.ProgrammingClass;
 
 public class ClassManager {
@@ -15,18 +17,25 @@ public class ClassManager {
 		int kind = 0;
 		Class class1 = new Class();
 		while (kind != 1 && kind != 2 ) {
-			System.out.print("1 for Dynamic: ");
-			System.out.print("2 for Programming: ");
-			System.out.print("Select num for Class Kind between 1 and 2: ");
+			System.out.println("1 for Dynamic ");
+			System.out.println("2 for Programming ");
+			System.out.println("3 for Elective ");
+			System.out.println("Select num 1, 2, or 3 for Class Kind: ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				class1 = new Class();
+				class1 = new Class(ClassKind.Dynamic);
 				class1.getUserInput(input);
 				classes.add(class1);
 				break;
 			}
 			else if (kind == 2) {
-				class1 = new ProgrammingClass();
+				class1 = new ProgrammingClass(ClassKind.Programming);
+				class1.getUserInput(input);
+				classes.add(class1);
+				break;
+			}
+			else if (kind == 3) {
+				class1 = new ElectiveClass(ClassKind.Elective);
 				class1.getUserInput(input);
 				classes.add(class1);
 				break;

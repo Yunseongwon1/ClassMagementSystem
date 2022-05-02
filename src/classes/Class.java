@@ -11,6 +11,9 @@ public class Class {
 	public Class() {
 		
 	}
+	public Class(ClassKind kind) {
+		this.kind = kind;
+	}
 	public Class(String ClassName, String ProfessorName) {
 		this.ClassName = ClassName;
 		this.ProfessorName = ProfessorName;
@@ -20,7 +23,12 @@ public class Class {
 		this.ProfessorName = ProfessorName;
 		this.Classroom = Classroom;
 	}
-	
+	public Class(ClassKind kind, String ClassName, String ProfessorName, String Classroom) {
+		this.kind = kind;
+		this.ClassName = ClassName;
+		this.ProfessorName = ProfessorName;
+		this.Classroom = Classroom;
+	}
 	public ClassKind getKind() {
 		return kind;
 	}
@@ -47,7 +55,20 @@ public class Class {
 	}
 	
 	public void printInfo() {
-		System.out.println("Class Name: " + ClassName + " Professor Name: " + ProfessorName + " Classroom: " + Classroom);
+		String skind = "none";
+		switch(this.kind) {
+		case Dynamic:
+			skind = "Dynamic.";
+			break;
+		case Programming:
+			skind = "Programming.";
+			break;
+		case Elective:
+			skind = "Elective.";
+			break;
+		default:
+		}
+		System.out.println("Kind: "+ skind + "Class Name: " + ClassName + " Professor Name: " + ProfessorName + " Classroom: " + Classroom);
 	}
 	
 	public void getUserInput(Scanner input) {
