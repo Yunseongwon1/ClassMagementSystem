@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Scanner;
 
-public class Class {
+public abstract class Class {
 	protected ClassKind kind = ClassKind.Dynamic;
 	protected String ClassName;
 	protected String ProfessorName;
@@ -54,35 +54,6 @@ public class Class {
 		Classroom = classroom;
 	}
 	
-	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case Dynamic:
-			skind = "Dynamic.";
-			break;
-		case Programming:
-			skind = "Programming.";
-			break;
-		case Elective:
-			skind = "Elective.";
-			break;
-		default:
-		}
-		System.out.println("Kind: "+ skind + "Class Name: " + ClassName + " Professor Name: " + ProfessorName + " Classroom: " + Classroom);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Class Name:");
-		String classname = input.next();
-		this.setClassName(classname);
-		
-		System.out.print("Professor Name:");
-		String professorname = input.next();
-		this.setProfessorName(professorname);
-		
-		System.out.print("Classroom:");
-		String classroom = input.next();
-		this.setClassroom(classroom);
-	}
+	public abstract void printInfo();
 }
 

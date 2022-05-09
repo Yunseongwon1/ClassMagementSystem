@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Class;
+import classes.ClassInput;
 import classes.ClassKind;
+import classes.DynamicClass;
 import classes.ElectiveClass;
 import classes.ProgrammingClass;
 
 public class ClassManager {
-	ArrayList<Class> classes = new ArrayList<Class>();
+	ArrayList<ClassInput> classes = new ArrayList<ClassInput>();
 	Scanner input;
 	ClassManager(Scanner input){
 		this.input = input;
@@ -15,7 +17,7 @@ public class ClassManager {
 	
 	public void addClass() {
 		int kind = 0;
-		Class class1 = new Class();
+		ClassInput classInput;
 		while (kind != 1 && kind != 2 ) {
 			System.out.println("1 for Dynamic ");
 			System.out.println("2 for Programming ");
@@ -23,21 +25,21 @@ public class ClassManager {
 			System.out.println("Select num 1, 2, or 3 for Class Kind: ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				class1 = new Class(ClassKind.Dynamic);
-				class1.getUserInput(input);
-				classes.add(class1);
+				classInput = new DynamicClass(ClassKind.Dynamic);
+				classInput.getUserInput(input);
+				classes.add(classInput);
 				break;
 			}
 			else if (kind == 2) {
-				class1 = new ProgrammingClass(ClassKind.Programming);
-				class1.getUserInput(input);
-				classes.add(class1);
+				classInput = new ProgrammingClass(ClassKind.Programming);
+				classInput.getUserInput(input);
+				classes.add(classInput);
 				break;
 			}
 			else if (kind == 3) {
-				class1 = new ElectiveClass(ClassKind.Elective);
-				class1.getUserInput(input);
-				classes.add(class1);
+				classInput = new ElectiveClass(ClassKind.Elective);
+				classInput.getUserInput(input);
+				classes.add(classInput);
 				break;
 			}
 			else {
@@ -72,31 +74,31 @@ public class ClassManager {
 		System.out.print("Class Name:");
 		String ClassName = input.next();
 		for (int i = 0; i<classes.size(); i++) {
-			Class class1 = classes.get(i);
-			if (class1.getClassName().equals(ClassName)) {
+			ClassInput classInput = classes.get(i);
+			if (classInput.getClassName().equals(ClassName)) {
 				int num = -1;
 				while (num != 5) {
 					System.out.println("** Class Info Edit Menu **");
 					System.out.println(" 1. Edit ClassName");
 					System.out.println(" 2. Edit ProfessorName");
 					System.out.println(" 3. View Classroom");
-					System.out.println(" 5. Exit");
-					System.out.print("Select one number between 1 - 6: ");
+					System.out.println(" 4. Exit");
+					System.out.print("Select one number between 1 - 4: ");
 					num = input.nextInt();
 					if (num == 1) {
 						System.out.print("Class Name: ");
 						String classname = input.next();
-						class1.setClassName(classname);
+						classInput.setClassName(classname);
 					}
 					else if (num == 2) {
 						System.out.print("Professor Name: ");
 						String professorname = input.next();
-						class1.setProfessorName(professorname);
+						classInput.setProfessorName(professorname);
 					}
 					else if (num == 3) {
 						System.out.print("Classroom: ");
 						String classroom = input.next();
-						class1.setClassroom(classroom);
+						classInput.setClassroom(classroom);
 					}
 					else {
 						continue;
