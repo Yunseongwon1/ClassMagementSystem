@@ -2,7 +2,9 @@ package classes;
 
 import java.util.Scanner;
 
-public abstract class Class {
+import exception.ClassroomFormatException;
+
+public abstract class Class implements ClassInput {
 	protected ClassKind kind = ClassKind.Dynamic;
 	protected String ClassName;
 	protected String ProfessorName;
@@ -39,21 +41,67 @@ public abstract class Class {
 		return ClassName;
 	}
 	public void setClassName(String className) {
-		ClassName = className;
+		this.ClassName = className;
 	}
 	public String getProfessorName() {
 		return ProfessorName;
 	}
 	public void setProfessorName(String professorName) {
-		ProfessorName = professorName;
+		this.ProfessorName = professorName;
 	}
 	public String getClassroom() {
 		return Classroom;
 	}
-	public void setClassroom(String classroom) {
-		Classroom = classroom;
+	public void setClassroom(String classroom) throws ClassroomFormatException {
+		if(!classroom.contains("µ¿") && !classroom.equals("")) {
+			throw new ClassroomFormatException();
+		}
+		
+		this.Classroom = classroom;
 	}
 	
 	public abstract void printInfo();
+	
+	public void setClassName(Scanner input) {
+		System.out.print("Class Name: ");
+		String classname = input.next();
+		this.setClassName(classname);
+	}
+	 
+	public void setProfessorName(Scanner input) {
+		System.out.print("Professor Name: ");
+		String professorname = input.next();
+		this.setProfessorName(professorname);
+	}
+	
+	public void setClassroom(Scanner input) {
+		String classroom = "";
+		while(!classroom.contains("µ¿")) {
+			System.out.print("Classroom: ");
+			classroom = input.next();
+			try {
+				this.setClassroom(classroom);
+			} catch (ClassroomFormatException e) {
+				System.out.println("Incorrect Classroom Format. put the classroom that contains µ¿");
+			}
+		}
+	}
+	
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind) {
+		case Dynamic:
+			skind = "Dynamic.";
+			break;
+		case Programming:
+			skind = "Programming.";
+			break;
+		case Elective:
+			skind = "Elective.";
+			break;
+		default:
+		}
+		return skind;
+	}
 }
 
