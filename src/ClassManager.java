@@ -1,17 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import classes.Class;
 import classes.ClassInput;
 import classes.ClassKind;
 import classes.DynamicClass;
 import classes.ElectiveClass;
 import classes.ProgrammingClass;
 
-public class ClassManager {
+public class ClassManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2031849398981426564L;
+	
 	ArrayList<ClassInput> classes = new ArrayList<ClassInput>();
-	Scanner input;
+	transient Scanner input;
 	ClassManager(Scanner input){
 		this.input = input;
 	}
