@@ -10,7 +10,11 @@ public interface ClassInput {
 	
 	public void setClassName(String className);
 	
+	public String getProfessorName();
+	
 	public void setProfessorName(String professorName);
+	
+	public String getClassroom();
 	
 	public void setClassroom(String classroom) throws ClassroomFormatException;
 	
