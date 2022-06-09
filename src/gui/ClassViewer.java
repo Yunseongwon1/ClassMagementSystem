@@ -16,6 +16,34 @@ public class ClassViewer extends JPanel{
 	WindowFrame frame;
 	ClassManager classmanager;
 
+	public ClassManager getClassmanager() {
+		return classmanager;
+	}
+
+	public void setClassmanager(ClassManager classmanager) {
+		this.classmanager = classmanager;
+		this.removeAll();
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("CLASSNAME");
+		model.addColumn("PROFESSORNAME");
+		model.addColumn("CLASSROOM");
+		
+		for(int i = 0; i < classmanager.size(); i++) {
+			Vector row = new Vector();
+			ClassInput ci = classmanager.get(i);
+			row.add(ci.getClassName());
+			row.add(ci.getProfessorName());
+			row.add(ci.getClassroom());
+			model.addRow(row);
+		}
+		
+		JTable table = new JTable(model);
+		JScrollPane sp = new JScrollPane(table);
+		
+		this.add(sp);
+	}
+
 	public ClassViewer(WindowFrame frame, ClassManager classmanager) {
 		this.frame = frame;
 		this.classmanager = classmanager;
